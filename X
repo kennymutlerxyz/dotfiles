@@ -1,0 +1,124 @@
+penBSD: Xresources.in,v 1.3 2020/06/28 15:38:34 kenny Exp $
+!
+!
+!
+!
+!
+
+
+
+
+xlogin*login.translations: #override \
+	<Key>F1: set-session-argument(failsafe) finish-field()\n\
+	<Key>Left: move-backward-character()\n\
+	<Key>Right: move-forward-character()\n\
+	<Key>Home: move-to-begining()\n\
+	<Key>End: move-to-end()\n\
+	Ctrl<Key>KP_Enter: set-session-argument(failsafe) finish-field()\n\
+	<Key>KP_Enter: set-session-argument() finish-field()\n\
+	Ctrl<Key>Return: set-session-argument(failsafe) finish-field()\n\
+	<Key>Return: set-session-argument() finish-field()
+
+xlogin*greeting: 
+xlogin*namePrompt: \040\040\040\040\040\040\040Login:
+xlogin*fail: Wrong password, try again!
+xlogin.Login.echoPasswd:       true
+
+xlogin*greetFace:       Inconsolata-24:regular:dpi=75
+xlogin*face:            Inconsolata-24:regular:dpi=75
+xlogin*promptFace:      Inconsolata-24:regular:dpi=75
+xlogin*failFace:        Inconsolata-24:regular:dpi=75
+
+
+#if !(defined(bpp1) || defined(bpp4) || defined(bpp8) || defined(bpp15))
+# if PLANES < 4
+#  ifndef bpp1
+#   define bpp1
+#  endif
+# else
+#  if PLANES > 4
+#   if PLANES > 8
+#    ifndef bpp15
+#     define bpp15
+#    endif
+#   else
+#    ifndef bpp8
+#     define bpp8
+#    endif bpp8
+#   endif
+#  else
+#   ifndef bpp4
+#    define bpp4
+#   endif
+#  endif
+# endif
+#endif  /* If manual override */
+
+#ifndef bpp1
+xlogin*borderWidth: 6
+xlogin*frameWidth: 2
+xlogin*innerFramesWidth: 0
+
+xlogin.Login.sepWidth: 0
+
+! top/left border
+xlogin*hiColor: yellow
+
+! bottom/right border
+xlogin*shdColor: yellow
+
+! 'Welcome to..' text color
+xlogin*greetColor: cyan
+#if defined(bpp4) || defined(bpp8) || defined(bpp15)
+! flood fill
+xlogin*background: black
+xlogin*inpColor: black
+#endif
+xlogin*failColor: red
+
+! 'Login:' and 'Password:'
+*Foreground: cyan
+
+! border/shadow
+*Background: black
+#else
+xlogin*borderWidth: 6
+xlogin*frameWidth: 5
+xlogin*innerFramesWidth: 1
+xlogin*shdColor: black
+xlogin*hiColor: white
+xlogin*greetColor: white
+xlogin*background: black
+xlogin*failColor: red
+xlogin*promptColor: cyan
+*Foreground: black
+*Background: cyan
+#endif
+#ifdef bpp1
+xlogin*logoFileName: /etc/X11/xenodm/pixmaps/itsalive.xpm
+#endif
+#ifdef bpp4
+xlogin*logoFileName: /usr/local/share/pixmaps/itsalive.xpm
+#endif
+#ifdef bpp8
+xlogin*logoFileName: /usr/local/share/pixmaps/itsalive.xpm
+#endif
+#ifdef bpp15
+xlogin*logoFileName: /usr/local/share/pixmaps/itsalive.xpm
+#endif
+
+xlogin*useShape: true
+xlogin*logoPadding: 10
+
+! uncomment to disable logins
+! xlogin.Login.allowRootLogin:	false
+
+XConsole*background:	black
+XConsole*foreground:	white
+XConsole*borderWidth:	2
+XConsole*borderColor:   grey
+XConsole.text.geometry:	480x130
+XConsole.verbose:	true
+XConsole*iconic:	true
+XConsole*font:		fixed
+
